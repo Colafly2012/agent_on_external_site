@@ -45,7 +45,7 @@
 
         <!-- Buttons -->
         <div style="margin-top: 30px;">
-            <button
+            <button id="welcomeBtn"
                 style="padding: 10px 20px; margin: 5px; border: none; background-color: #f8f9fa; border-radius: 4px; font-size: 14px; cursor: pointer;">Welcome</button>
             <button
                 style="padding: 10px 20px; margin: 5px; border: none; background-color: #f8f9fa; border-radius: 4px; font-size: 14px; cursor: pointer;">I'm
@@ -71,8 +71,11 @@
     </footer>
 
 <script type='text/javascript'>
+    let isHide = true;
+
 	function initEmbeddedMessaging() {
 		try {
+            embeddedservice_bootstrap.settings.hideChatButtonOnLoad = isHide;
 			embeddedservice_bootstrap.settings.language = 'zh_TW'; // For example, enter 'en' or 'en-US'
             //embeddedservice_bootstrap.settings.chatButtonPosition = "30px,60px";
 
@@ -88,8 +91,19 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+
+    // Welcome按钮点击事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const welcomeBtn = document.getElementById('welcomeBtn');
+        if (welcomeBtn) {
+            welcomeBtn.addEventListener('click', function() {
+                isHide = false;
+                initEmbeddedMessaging();
+            });
+        }
+    });
 </script>
-<script type='text/javascript' src='https://orgfarm-66b5362d4f-dev-ed.develop.my.site.com/ESWeShop1753243953929/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'>
+<script type='text/javascript' src='https://orgfarm-66b5362d4f-dev-ed.develop.my.site.com/ESWeShop1753243953929/assets/js/bootstrap.min.js'>
 </script>
 
 
